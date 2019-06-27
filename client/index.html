@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="./bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" media="screen" type="text/css" href="./bootstrap/css/styleacts.css" />
+    <link rel="stylesheet" href="js/libs/jquery-ui-1.12.1/jquery-ui.css">
+
+    <title>Data Acquisition</title>
+
+    <script type="text/javascript" src="js/libs/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/libs/jquery-ui-1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/libs/jquery.dragoptions.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid"><div class="offset-1 col-sm-10">
+        <h1> Salut! Bienvenue sur l'interface de recueil des données du LIARA </h1>
+    </div>
+    </div>
+    <div class="row">
+        <div class="offset-1 col-sm-10">
+            <h2> Laboratoire d'Intelligence Ambiante pour la Reconnaissance d'Activités </h2>
+        </div>
+        <h2>Activités</h2>
+
+        <div class="row">
+            <div class="offset-sm-1 col-sm-10 offset-lg-0 col-lg-4">
+                <label>Liste des activités existantes</label><br>
+                <select style="width: 100%" id="activityExists"></select>
+                <div style="text-align : center">
+                    <input type="button" value="Ajouter l'activité aux exécutions" id="addExeAct">
+                    <input type="button" value="Supprimer l'activité" id="delAct">
+                    <input type="button" value="Modifier l'activité" id="modAct">
+                    <a href="./newActivity.html"><input type="button" value="Ajouter une activité"></a>
+                </div>
+            </div>
+
+            <div class="offset-sm-1 col-sm-10 offset-lg-0 col-lg-4">
+                <label>Liste des activités à exécuter</label><br>
+                <select size="4" style="width: 100%" id="activityExec"></select>
+                <div style="text-align : center">
+                    <input type="button" value="Supprimer" id="delExeAct">
+                </div>
+            </div>
+
+            <div class="offset-sm-1 col-sm-10 offset-lg-0 col-lg-4">
+                <label>Liste des sous-activité de l'activité selectionnée</label><br>
+                <ul multiple style="width: 100%" id="subActivityList"></ul>
+            </div>
+            <br>
+            <input type="button" value="Valider" id="valide">
+        </div>
+    </div>
+</body>
+
+</html>

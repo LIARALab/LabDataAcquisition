@@ -1,0 +1,20 @@
+{
+  "name": "data-acquisition",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "LIARALab",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "ejs": "^2.6.1",
+    "express": "^4.17.0",
+    "mobile-drag-drop": "^2.3.0-rc.1",
+    "mongodb": "^3.2.5",
+    "save": "^2.4.0"
+  }
+}

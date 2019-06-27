@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<TITLE> LIARA | Interface de recueil de données </TITLE>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/libs/jquery-3.4.1.min.js"></script>
+    <script src="js/scriptWebsocket.js"></script>
+	<link href="./bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" media="screen" type="text/css" href="./bootstrap/css/style.css" />
+	<link rel="shortcut icon" href="favicon.ico">
+
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+                <p>Nom de dossier</p>
+                <input type="text" id="folderName">
+		</div>
+
+		<br>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="datasource">
+					<div class=row>
+						<div class="offset-1 col-sm-10">
+							<p>Sélectionner la source de données que vous désirez (WebSocket)</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="offset-sm-3 offset-lg-5 col-sm-6 col-lg-2">
+							<div id="websocket">
+							</div>
+						</div>
+						
+						<div class="offset-sm-3 offset-lg-5 col-sm-7 col-lg-2">
+							<input type="checkbox" class="plusbas" id="CocherSource" >
+							<label for="CocherSource" class="plusbas"> Tout séléctionner </label>
+						</div>
+					</div>
+					<input type="button" id="addWs" class="btn" value="Ajouter une source de données" >
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="offset-1 col-sm-10">
+				<div class="filetype">
+					<div class="row">
+						<div class="offset-1 col-sm-10">
+							<p>Sélectionner le type de fichier que vous souhaiter</p>
+						</div>
+					</div>
+					<div class="offset-sm-3 offset-lg-5 col-sm-6 col-lg-2">
+
+						<input type="checkbox" id="json" class="Type"> JSON
+						<input type="checkbox" id="csv" class="Type"> CSV
+					</div>
+					<div class="offset-sm-3 offset-lg-5 col-sm-7 col-lg-2">
+						<input type="checkbox" class="plusbas" id="CocherType" >
+						<label for="CocherType" class="plusbas"> Tout séléctionner </label>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		<div class="accept">
+
+			<input id="suivant" type="button" class="btn2" value="Suivant">
+
+		</div>
+
+
+	</div>
+</body>
+
+</html>

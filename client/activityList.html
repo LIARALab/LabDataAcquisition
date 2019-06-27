@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="./bootstrap/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" media="screen" type="text/css" href="./bootstrap/css/styleacts2.css" />
+	<link rel="shortcut icon" href="favicon.ico">
+    <title>Data Acquisition</title>
+    <script type="text/javascript" src="js/libs/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/libs/FileSaver.js"></script>
+    <script type="text/javascript" src="js/libs/jszip.js"></script>
+    <script type="text/javascript" src="js/scriptActivityList.js"></script>
+    <script type="text/javascript" src="js/workerCSV1.js"></script>
+    <script type="text/javascript" src="js/workerCSV2.js"></script>
+    <script type="text/javascript" src="js/workerCSV3.js"></script>
+    <script type="text/javascript" src="js/workerJSON.js"></script>
+
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1>Liste des activités à exécuter</h1>
+        <h1 id="patience" style="display: none;">Veuillez patienter</h1>
+        <div class="row">
+            <div class="offset-2 col-8">
+                <h2 id="lblChoixAct">Choisissez maintenant votre activité</h2>
+                <div id="activityList">
+
+                </div>
+            </div>
+        </div>
+        <div style="text-align : center" id="div_startStop">
+            <input type="button" value="Start" id="btn_start">
+            <input type="button" value="Stop" id="btn_stop">
+        </div>
+    </div>
+</body>
+
+</html>

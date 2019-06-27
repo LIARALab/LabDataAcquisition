@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="./bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" media="screen" type="text/css" href="./bootstrap/css/styleacts.css" />
+    <title>Title</title>
+    <script type="text/javascript" src="js/libs/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/scriptNewActivity.js"></script>
+    <script type="text/javascript" src="js/libs/jquery.dragoptions.min.js"></script>
+
+</head>
+
+<body>
+<div class="container-fluid">
+    <h1> Nouvelle Activité </h1>
+    <div class="row" id="err" hidden>
+        <div class="offset-4 col-4" style="text-align : center"><p> Le nom d'une activité est obligatoire </p></div></div>
+    <div class="row">
+
+        <p class="offset-4 col-4">Entrez le nom de la nouvelle activité</p>
+    </div>
+    <div class="row">
+        <input type="text" id="activityName" class="offset-4 col-4">
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="offset-sm-2 col-sm-8 offset-lg-1 col-lg-4">
+            <p>Les sous-activités qui existent déjà</p>
+            <select multiple style="width: 100%" id="subActivityExists">
+                <!-- liste de toutes les sous-activités existantes-->
+
+            </select>
+            <div style="text-align : center">
+                <input type="button" value="Ajouter à l'activité" onclick="addSubActivity()">
+                <input type="button" value="Créer une nouvelle sous-activité" onclick="createSubActivity()">
+            </div>
+        </div>
+        <div class="offset-2 col-sm-8 col-lg-4" id="saut">
+            <p>Les sous-activités que vous voulez exécuter</p>
+            <select multiple style="width: 100%" id="subActivityChoosed">
+                <!-- liste des sous-activités ajouter-->
+            </select>
+            <div style="text-align : center">
+                <input type="button" value="Supprimer de la liste">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="offset-4 col-4" style="text-align : center">
+            <input type="button" value="Valider" id="valide">
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

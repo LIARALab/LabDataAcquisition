@@ -1,0 +1,49 @@
+version: '3.7'
+
+services: 
+  data-acquisition-gui:
+    build: 
+      context: .
+      dockerfile: ./client/Dockerfile
+    image: data-acquisition-gui:latest
+    container_name: data-acquisition-gui
+    restart: always
+    environment: 
+      - TZ=America/Montreal
+    ports:
+      - 8080:8080
+    depends_on:
+      - data-acquisition
+    networks: 
+      - data-acquisition-net
+  data-acquisition:
+    build: 
+      context: ./server
+      dockerfile: Dockerfile
+    image: data-acquisition:latest
+    container_name: data-acquisition
+    restart: always
+    ports:
+      - 3000:3000
+    networks: 
+      - data-acquisition-net
+    depends_on:
+      - data-acquisition-db
+  data-acquisition-db:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: data-acquisition-db:latest
+    container_name: data-acquisition-db
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./.data:/data/db
+    networks: 
+      - data-acquisition-net
+
+networks: 
+  data-acquisition-net:
+    name: data-acquisition-net
+    driver: bridge

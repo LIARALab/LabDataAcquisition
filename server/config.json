@@ -1,0 +1,9 @@
+{
+    "mongo": {
+        "host": "data-acquisition-db",
+        "port": 27017,
+        "db": "LIARA",
+        "username": "",
+        "password": ""
+    }
+}

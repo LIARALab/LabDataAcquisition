@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="./bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" media="screen" type="text/css" href="./bootstrap/css/styleacts.css" />
+    <title>Title</title>
+    <script type="text/javascript" src="js/libs/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/libs/jquery.dragoptions.min.js"></script>
+    <script type="text/javascript" src="js/scriptModActivity.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+
+
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1> Modification d'une activité </h1>
+        <div class="row">
+            <p class="offset-2 col-8">Entrez le nom de la nouvelle activité</p>
+        </div>
+        <div class="row">
+            <input type="text" placeholder="activity" name="name" id="activityName" required class="offset-4 col-4">
+        </div>
+        <span id="missName" textContent="ok"></span><br>
+        <div class="row">
+            <div class="offset-sm-2 col-sm-8 offset-lg-1 col-lg-4">
+                <p>Les sous-activités qui existent déjà</p>
+                <select multiple style="width : 100%" id="subActivityExists">
+                    <!-- liste de toutes les sous-activités existantes-->
+
+                </select>
+                <div style="text-align : center">
+                    <input type="button" value="ajouter l'activité" id="addSubActivity">
+                    <input type="button" value="créer une nouvelle sous-activité" id="createSubActivity">
+                </div>
+            </div>
+            <div class="offset-2 col-sm-8 col-lg-4">
+                <p>Les sous-activités à exécuter</p>
+                <select style="width: 100%" id="subActivityChoosed" multiple="multiple" name="subActivity">
+                    <!-- liste des sous-activités ajouter-->
+                </select>
+                <div style="text-align : center">
+                    <input type="button" value="supprimer de la liste" id="deleteSubActivity" >
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <div style="text-align : center">
+            <input id="valider" type="button" value="Valider">
+        </div>
+    </div>
+
+
+</body>
+
+</html>
