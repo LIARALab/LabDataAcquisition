@@ -6,11 +6,60 @@
     let btn_delSubAct = $("#deleteSubActivity");
     let btn_valider = $("#valider");
     let address = getUrl();
+    let selected_sub_activity = false;
 
     function getUrl(){
         var host = window.location.hostname;
         return "http://"+host+":3000";
     }
+
+    $(document).ready(function () {
+        $('input[type="button"]').click(function () {
+            var $op = $('#subActivityChoosed option:selected'),
+                $this = $(this);
+            if ($op.length) {
+                if ($this.val() == 'Up') {
+                    $op.first().prev().before($op);
+                    select_subactivities.change();
+                    console.log("change")
+                } else {
+                    if ($this.val() == 'Down') {
+                        $op.last().next().after($op);
+                        select_subactivities.change();
+                        console.log("change")
+                    }
+                }
+            }
+        });
+    });
+
+    select_subactivities.change(function () {
+        var $op = $('#subActivityChoosed option:selected');
+        var first = $("#subActivityChoosed option:first");
+        var last = $("#subActivityChoosed option:last");
+        selected_sub_activity = true;
+        console.log("cur "+$op.val())
+        console.log("first "+first.val())
+        console.log("las "+last.val())
+        console.log(" ")
+
+
+        if ($op.first().val() == first.val()) {
+            $("#up_btn").attr("disabled", true);
+        } else {
+            $("#up_btn").attr("disabled", false);
+        }
+
+        if ($op.last().val() == last.val()) {
+            $("#down_btn").attr("disabled", true);
+        } else {
+            $("#down_btn").attr("disabled", false);
+        }
+
+        $("#deleteSubActivity").attr("disabled", false);
+
+
+    });
 
 
     let tmp = [];
@@ -85,30 +134,32 @@
         var selectSubActivityExists = document.getElementById("subActivityExists")
         for (var i = 0; i < selectSubActivityExists.options.length; i++) {
             if (selectSubActivityExists.options[i].selected == true) {
-                var option = document.createElement("option")
-                option.innerHTML = selectSubActivityExists.options[i].value
-                selectSubActivitychoose.appendChild(option)
+                var option = document.createElement("option");
+                option.innerHTML = selectSubActivityExists.options[i].value;
+                option.value=selectSubActivityExists.options[i].value;
+                selectSubActivitychoose.appendChild(option);
             }
         }
     })
 
     btn_creSubAct.click(function () {
-        var selectSubActivityExists = document.getElementById("subActivityExists")
-        var subActivityChoosed = document.getElementById("subActivityChoosed")
-        var option = document.createElement("option")
-        var option2 = document.createElement("option")
+        var selectSubActivityExists = document.getElementById("subActivityExists");
+        var subActivityChoosed = document.getElementById("subActivityChoosed");
+        var option = document.createElement("option");
+        var option2 = document.createElement("option");
         option.innerHTML = prompt("Entrez le nom de la nouvelle sous activité");
-        option2.innerHTML = option.innerHTML
-        selectSubActivityExists.appendChild(option)
-        subActivityChoosed.appendChild(option2)
+        option.value=option.innerHTML;
+        option2.innerHTML = option.innerHTML;
+        option.value=option.innerHTML;
+        selectSubActivityExists.appendChild(option);
+        subActivityChoosed.appendChild(option2);
     })
     btn_delSubAct.click(function () {
-        var selectSubActivityChoose = document.getElementById("subActivityChoosed")
-        for (var i = 0; i < selectSubActivityChoose.options.length; i++) {
-            if (selectSubActivityChoose.options[i].selected == true) {
-                var option = selectSubActivityChoose.options[i]
-                selectSubActivityChoose.removeChild(option)
-            }
+        if($("#subActivityChoosed option:selected").length!=0){
+            $("#subActivityChoosed option:selected").remove();
+        }
+        else{
+            $("#subActivityChoosed option:last").remove();
         }
     })
     btn_valider.click(function () {
@@ -136,6 +187,8 @@
                     console.log("SUCCESS")
                 }
             })
+        }else{
+            $("#err").removeAttr("hidden");
         }
         //
 

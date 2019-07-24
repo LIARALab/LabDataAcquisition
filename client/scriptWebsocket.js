@@ -1,3 +1,29 @@
+function check() {
+    var folderName = $("#folderName").val();
+    var checkSources = $('.Source:checkbox:checked');
+    var checkTypes = $('.Type:checkbox:checked');
+    if (folderName != "" && checkSources.length != 0 && checkTypes.length != 0) {
+        $("#suivant").attr("disabled", false);
+    }
+    else {
+        $("#suivant").attr("disabled", true);
+    }
+}
+
+$(document).ready(function () {
+    $("#folderName").change(function () {
+        var folderName = $("#folderName").val();
+        var checkSources = $('.Source:checkbox:checked');
+        var checkTypes = $('.Type:checkbox:checked');
+        if (folderName != "" && checkSources.length != 0 && checkTypes.length != 0) {
+            $("#suivant").attr("disabled", true);
+        }
+        else $("#suivant").attr("disabled", false);
+    });
+
+    var res = setInterval("check()", 300);
+});
+
 ($(function() {
 	let addWs = $("#addWs");
 	let type = $("#CocherType");
@@ -11,16 +37,7 @@
 		return "http://"+host+":3000";
 	}
 
-	//$("#suivant").attr("disabled", true);
-
-	/*var folderName = $("#folderName").val();
-	var checkSources = $('.Source:checkbox:checked');
-	var checkTypes = $('.Type:checkbox:checked');
-
-
-	if (folderName != ""){
-		$("#suivant").attr("disabled", false);
-	}*/
+	$("#suivant").attr("disabled", true);
 
 	$.ajax({
 		url: adresse+"/websocket",

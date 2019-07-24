@@ -5,26 +5,34 @@
     <meta charset="UTF-8">
     <link href="./bootstrap/bootstrap.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" media="screen" type="text/css" href="./bootstrap/css/styleacts.css" />
-    <link rel="stylesheet" href="js/libs/jquery-ui-1.12.1/jquery-ui.css">
+    <link rel="stylesheet" media="screen" type="text/css" href="./bootstrap/css/styleacts.css"/>
+    <link rel="stylesheet" href="lib/jquery-ui-1.12.1/jquery-ui.css">
 
-    <title>Data Acquisition</title>
+    <title>Title</title>
 
-    <script type="text/javascript" src="js/libs/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="js/libs/jquery-ui-1.12.1/jquery-ui.js"></script>
-    <script type="text/javascript" src="js/libs/jquery.dragoptions.min.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="lib/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-ui-1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="lib/jquery.dragoptions.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
 </head>
 
 <body>
-    <div class="container-fluid"><div class="offset-1 col-sm-10">
-        <h1> Salut! Bienvenue sur l'interface de recueil des données du LIARA </h1>
-    </div>
-    </div>
-    <div class="row">
-        <div class="offset-1 col-sm-10">
-            <h2> Laboratoire d'Intelligence Ambiante pour la Reconnaissance d'Activités </h2>
+<div class="container-fluid">
+    <div id="header">
+        <div class="row">
+            <div class="offset-1 col-sm-10">
+                <h1> Bienvenue sur l'interface de recueil des données du LIARA </h1>
+            </div>
         </div>
+
+        <div class="row">
+            <div class="offset-1 col-sm-10">
+                <h2> Laboratoire d'Intelligence Ambiante pour la Reconnaissance d'Activités </h2>
+            </div>
+        </div>
+    </div>
+
+    <div id="corps">
         <h2>Activités</h2>
 
         <div class="row">
@@ -44,6 +52,8 @@
                 <select size="4" style="width: 100%" id="activityExec"></select>
                 <div style="text-align : center">
                     <input type="button" value="Supprimer" id="delExeAct">
+                    <input type="button" value="Up" id="up_btn">
+                    <input type="button" value="Down" id="down_btn">
                 </div>
             </div>
 
@@ -51,10 +61,15 @@
                 <label>Liste des sous-activité de l'activité selectionnée</label><br>
                 <ul multiple style="width: 100%" id="subActivityList"></ul>
             </div>
-            <br>
-            <input type="button" value="Valider" id="valide">
+        </div>
+        <br>
+        <div class="row">
+            <div class="offset-2 col-8" style="text-align : center">
+                <input id="valide" type="button" value="Valider">
+            </div>
         </div>
     </div>
+</div>
 </body>
 
 </html>

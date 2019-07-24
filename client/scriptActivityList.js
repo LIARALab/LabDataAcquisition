@@ -1,4 +1,4 @@
-($(function() {
+($(function () {
     let div_activity = $("#activityList");
     let btn_stop = $("#btn_stop");
     let btn_start = $("#btn_start");
@@ -10,11 +10,13 @@
     let tabTypeWs = [];
     let adresse = getUrl();
 
-    function getUrl(){
-        let host = window.location.hostname;
-        return "http://"+host+":3000";
-    }
+    btn_stop.attr("disabled", true);
+    div_activity.hide();
 
+    function getUrl() {
+        let host = window.location.hostname;
+        return "http://" + host + ":3000";
+    }
 
 
     let decodeCookie = decodeURIComponent(document.cookie);
@@ -31,7 +33,7 @@
             console.log("name=" + name);
 
             $.ajax({
-                url: adresse+"/activities",
+                url: adresse + "/activities",
                 method: 'GET',
                 success: function (result) {
                     let value = eqPos > -1 ? cookie.substring(eqPosEg + 1, cookie.length) : cookie;
@@ -53,14 +55,29 @@
                                     description();
                                 }
                                 startActivity(result[j].name, "Transition");
+                                startButton.disabled = true;
+                                stopButton.disabled = false;
                             };
                             divAct.append(startButton);
 
                             let stopButton = document.createElement("input");
                             stopButton.type = "button";
                             stopButton.value = "stop";
+                            stopButton.disabled = true;
+                            var idbutton = "btn_stop_act" + j;
+                            stopButton.id = idbutton;
                             stopButton.onclick = function () {
-                                stopActivity("transition")
+                                stopActivity("transition");
+                                stopButton.disabled = true;
+                                startButton.disabled = false;
+                                if (result[j].subActivity != null) {
+                                    for (let k = 0; k < result[j].subActivity.length; k++) {
+                                        iddd = "#id_stop_btn" + k;
+                                        idddd = "#id_start_btn" + k;
+                                        $(iddd).attr("disabled", true);
+                                        $(idddd).attr("disabled", false);
+                                    }
+                                }
                             };
                             divAct.append(stopButton);
 
@@ -76,19 +93,31 @@
                                     let startButton = document.createElement("input");
                                     startButton.type = "button";
                                     startButton.value = "start";
+                                    var idddd = "id_start_btn" + k;
+                                    startButton.id = idddd;
                                     startButton.onclick = function () {
                                         if (enregistrement === false) {
                                             description();
                                         }
                                         startActivity(result[j].name, result[j].subActivity[k]);
+                                        startButton.disabled = true;
+                                        stopButton.disabled = false;
+                                        var idd = "#" + idbutton;
+                                        console.log($(idd));
+                                        $(idd).attr("disabled", false);
                                     };
                                     divSubAct.append(startButton);
 
                                     let stopButton = document.createElement("input");
                                     stopButton.type = "button";
                                     stopButton.value = "stop";
+                                    var iddd = "id_stop_btn" + k;
+                                    stopButton.id = iddd;
+                                    stopButton.disabled = true;
                                     stopButton.onclick = function () {
-                                        stopActivity(result[j].name)
+                                        stopActivity(result[j].name);
+                                        stopButton.disabled = true;
+                                        startButton.disabled = false;
                                     };
                                     divSubAct.append(stopButton);
                                     divAct.append(divSubAct);
@@ -105,7 +134,7 @@
 
 
             $.ajax({
-                url: adresse+"/websocket",
+                url: adresse + "/websocket",
                 method: 'GET',
                 success: function (result) {
                     let value = eqPos > -1 ? cookie.substring(eqPosEg + 1, cookie.length) : cookie;
@@ -147,6 +176,9 @@
 
     btn_start.click(function () {
         description();
+        btn_stop.attr("disabled", false);
+        div_activity.show();
+        btn_start.attr("disabled", true);
     });
 
     function description() {
@@ -155,7 +187,7 @@
         dataString = "Documentation\r\n";
 
         $.ajax({
-            url: adresse+"/activities",
+            url: adresse + "/activities",
             method: 'GET',
             success: function (result) {
                 dataString = dataString + "Activités exécutées : \r\n";
@@ -193,7 +225,7 @@
             }
         });
         $.ajax({
-            url: adresse+"/websocket",
+            url: adresse + "/websocket",
             method: 'GET',
             success: function (result) {
                 dataString = dataString + 'Webservices utilisés : \r\n';
@@ -230,28 +262,13 @@
         });
 
         function tre(dataString) {
-            console.log("eeeeeeeeeeeeeeee");
             console.log(dataString);
-            console.log("eeeeeeeeeeeeeeee");
             Thread(dataString);
         }
 
 
     }
 
-    // function deleteAllCookies() {//supprime les cookies
-    //     console.log('ok2');
-    //     let decodedCookie = decodeURIComponent(document.cookie);
-    //     let cookies = decodedCookie.split(";");
-    //     for (let i = 0; i < cookies.length; i++) {
-    //
-    //         let cookie = cookies[i];
-    //         let eqPos = cookie.indexOf("=");
-    //         let name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
-    //         document.cookie = name + "=;expires = Thu, 01 Jan 1970 00:00:00 GMT";
-    //         console.log(cookie);
-    //     }
-    // }
 
     // tableau de thread
     let threadCsv = [];
@@ -274,16 +291,16 @@
         for (let i = 0; i < tabDatarecu.length; i++) {
             nbThreadRestant++;
             let monWorker;
-            console.log("type "+tabTypeRecu[i]);
+            console.log("type " + tabTypeRecu[i]);
             switch (tabTypeRecu[i]) {
 
                 case "2":
-                     monWorker = new Worker('workerCSV2.js');
+                    monWorker = new Worker('workerCSV2.js');
                     console.log("2");
                     break;
                 case "3":
                     console.log("3");
-                     monWorker = new Worker('workerCSV3.js');
+                    monWorker = new Worker('workerCSV3.js');
                     break;
                 case "1":
                     console.log("1");
@@ -344,7 +361,7 @@
             let monWorker = new Worker('workerJSON.js');
             threadJson[i] = monWorker;
 
-            monWorker.postMessage([0, tabUri[i], tabNomWs[i],tabTypeWs[i]]);
+            monWorker.postMessage([0, tabUri[i], tabNomWs[i], tabTypeWs[i]]);
             console.log(tabUri + tabNomWs);
 
             threadJson[i].onmessage = function (e) {
@@ -360,15 +377,13 @@
                     }
 
                 } else {
-                    if(e.data[0]=='error'){
+                    if (e.data[0] == 'error') {
 
                         alert(e.data[1]);
-                    }else {
-                        if (json === true) {
-                            tabNomrecu[nbRecu] = e.data[1];
-                            tabDatarecu[nbRecu] = "[" + e.data[0] + "]";
-                            tabTypeRecu[nbRecu] = e.data[2];
-                        }
+                    } else {
+                        tabNomrecu[nbRecu] = e.data[1];
+                        tabDatarecu[nbRecu] = "[" + e.data[0] + "]";
+                        tabTypeRecu[nbRecu] = e.data[2];
                         nbRecu++;
                         //monWorker.terminate();
                         nbThreadRestant--;

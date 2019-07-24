@@ -1,7 +1,15 @@
 body {
 	padding: 2%;
-	background: rgba(159, 191, 223, 0.5);
+	background: white;
 	font-size: 18px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.container-fluid{
+	background : #eee;
+	margin : 1.5%;
+	padding : 1%;
+	border-radius: 6px;
 }
 
 label{
@@ -37,7 +45,7 @@ html {
 
 input[type=button] {
 	font-size: 18px;
-	background: rgb(159, 191, 223);
+	background-color: lightgrey;
 	color: black;
 	border-radius: 8px;
 	display: block;
@@ -46,19 +54,14 @@ input[type=button] {
 	margin-top: 10px;
 }
 
-input[type=button]:hover {
-	background: rgb(102, 204, 204);
-	color: black;
-	border-radius: 8px;
-}
-
 input[type=button]:disabled {
-	background: rgb(109, 132, 156);
+	background-color: dimgrey;
+	color: black;
 }
 
 input.delete {
 	font-size: 18px;
-	background: rgb(159, 191, 223);
+	background-color: lightgrey;
 	color: black;
 	border-radius: 30px;
 	display: inline-block;
@@ -99,7 +102,6 @@ div.activite {
 @media screen and (max-width: 1340px) {
 	input[type=button] {
 		font-size: 18px;
-		background: rgb(159, 191, 223);
 		color: black;
 		border-radius: 15px;
 		display: inline-block;
@@ -112,7 +114,7 @@ div.activite {
 		margin-left: 8%;
 		margin-top: 7%;
 		margin-bottom: 3%;
-		background: rgba(159, 191, 223, 0.7);
+		background: white;
 	}
 	.datasource {
 		margin-bottom: 15%;

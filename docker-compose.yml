@@ -1,6 +1,7 @@
 version: '3.7'
 
 services: 
+
   data-acquisition-gui:
     build: 
       context: .
@@ -8,14 +9,20 @@ services:
     image: data-acquisition-gui:latest
     container_name: data-acquisition-gui
     restart: always
-    environment: 
-      - TZ=America/Montreal
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5000k"
+        max-file: "1"
     ports:
       - 8080:8080
     depends_on:
       - data-acquisition
     networks: 
       - data-acquisition-net
+    volumes:
+      - /etc/localtime:/etc/localtime
+
   data-acquisition:
     build: 
       context: ./server
@@ -23,27 +30,39 @@ services:
     image: data-acquisition:latest
     container_name: data-acquisition
     restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5000k"
+        max-file: "1"
     ports:
       - 3000:3000
     networks: 
       - data-acquisition-net
+    volumes:
+      - /etc/localtime:/etc/localtime
     depends_on:
       - data-acquisition-db
+
   data-acquisition-db:
-    build: 
-      context: .
-      dockerfile: Dockerfile
-    image: data-acquisition-db:latest
+    image: mongo:4.0
     container_name: data-acquisition-db
     restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5000k"
+        max-file: "1"
     ports:
       - 27017:27017
     volumes:
       - $HOME/.mongodb/data:/data/db
+      - /etc/localtime:/etc/localtime
     networks: 
       - data-acquisition-net
 
-networks: 
+networks:
+
   data-acquisition-net:
     name: data-acquisition-net
     driver: bridge

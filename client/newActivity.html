@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <link href="./bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/bootstrap.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" media="screen" type="text/css" href="./bootstrap/css/styleacts.css" />
     <title>Title</title>
-    <script type="text/javascript" src="js/libs/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="js/scriptNewActivity.js"></script>
-    <script type="text/javascript" src="js/libs/jquery.dragoptions.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="scriptNewActivity.js"></script>
+    <script type="text/javascript" src="lib/jquery.dragoptions.min.js"></script>
 
 </head>
 
@@ -17,9 +17,11 @@
 <div class="container-fluid">
     <h1> Nouvelle Activité </h1>
     <div class="row" id="err" hidden>
-        <div class="offset-4 col-4" style="text-align : center"><p> Le nom d'une activité est obligatoire </p></div></div>
+        <div class="offset-4 col-4" style="text-align : center">
+            <p> Le nom d'une activité est obligatoire </p>
+        </div>
+    </div>
     <div class="row">
-
         <p class="offset-4 col-4">Entrez le nom de la nouvelle activité</p>
     </div>
     <div class="row">
@@ -45,7 +47,9 @@
                 <!-- liste des sous-activités ajouter-->
             </select>
             <div style="text-align : center">
-                <input type="button" value="Supprimer de la liste">
+                <input type="button" value="Supprimer de la liste" id="btn_delSubAct">
+                <input type="button" value="Up" id="up_btn">
+                <input type="button" value="Down" id="down_btn">
             </div>
         </div>
     </div>
