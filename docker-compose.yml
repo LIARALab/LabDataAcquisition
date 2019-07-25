@@ -45,7 +45,10 @@ services:
       - data-acquisition-db
 
   data-acquisition-db:
-    image: mongo:4.0
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: data-acquisition-db:latest
     container_name: data-acquisition-db
     restart: always
     logging:
