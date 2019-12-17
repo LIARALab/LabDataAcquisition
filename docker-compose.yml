@@ -1,9 +1,8 @@
 version: '3.7'
 
-services: 
-
+services:
   data-acquisition-gui:
-    build: 
+    build:
       context: .
       dockerfile: ./client/Dockerfile
     image: data-acquisition-gui:latest
@@ -18,13 +17,13 @@ services:
       - 8080:8080
     depends_on:
       - data-acquisition
-    networks: 
+    networks:
       - data-acquisition-net
     volumes:
       - /etc/localtime:/etc/localtime
 
   data-acquisition:
-    build: 
+    build:
       context: ./server
       dockerfile: Dockerfile
     image: data-acquisition:latest
@@ -37,7 +36,7 @@ services:
         max-file: "1"
     ports:
       - 3000:3000
-    networks: 
+    networks:
       - data-acquisition-net
     volumes:
       - /etc/localtime:/etc/localtime
@@ -56,13 +55,12 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - $HOME/.mongodb/data:/data/db
+      - /mnt/storage/data/data-acquisition:/data/db
       - /etc/localtime:/etc/localtime
-    networks: 
+    networks:
       - data-acquisition-net
 
 networks:
-
   data-acquisition-net:
     name: data-acquisition-net
     driver: bridge
